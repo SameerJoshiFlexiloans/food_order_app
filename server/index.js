@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const config = require('config')
 
 const app = express();
 
@@ -9,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://sameerjoshi:sam1234@cluster0.etyik.mongodb.net/RestaurantsDB?retryWrites=true&w=majority');
+mongoose.connect(config.get('mongoId'));
 
 app.use('/',require('./router'));
 

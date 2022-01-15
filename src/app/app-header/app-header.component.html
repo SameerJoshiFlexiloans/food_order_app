@@ -15,7 +15,7 @@
         <div class="text-end">
           <button type="button" class="btn btn-warning me-2" routerLink="/login" *ngIf="!logged">Login</button>
           <button type="button" class="btn btn-success me-2" routerLink="/signup" *ngIf='!logged'>Sign Up</button>
-          <button type="button" class="btn btn-success" (click) = signout() *ngIf='logged'>Log Out</button>
+          <button type="button" class="btn btn-danger" (click) = signout() *ngIf='logged'>Log Out</button>
         </div>
       </div>
     </div>
