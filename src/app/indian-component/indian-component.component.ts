@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { foodCard } from '../food.service';
+import { MenuService } from '../services/menu.service';
 
 @Component({
   selector: 'app-indian-component',
@@ -7,37 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndianComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private menuService:MenuService,private http:HttpClient) { }
 
+  httpValue!:any;
+  foods!:Array<foodCard>;
   ngOnInit(): void {
-  }
-
-  value0:number = 0;
-  value1:number = 0;
-  total:number = 0;
-  foods = [{"biryani":120,"fish_curry":150}];
-
-  calculate(value:string,real:number){
-    if(value == '-'){
-      if(real <= 0){
-        return 0;
-      }
-      else{
-        return -1
-      }
-    }
-    else{
-      return +1;
-    }
-  }
-
-  quantity(value:string,food:number){
-    if(food == 0){
-      this.value0 += this.calculate(value,this.value0);
-    }
-    else{
-      this.value1 += this.calculate(value,this.value1);
-    }
-    
+      this.menuService.getDataValues('indian').subscribe(value=>{
+        this.httpValue = value;
+        this.foods = this.httpValue.data;
+      });
   }
 }

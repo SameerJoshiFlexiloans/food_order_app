@@ -9,7 +9,18 @@ export class AppHeaderComponent implements OnInit {
 
   constructor() { }
 
+  logged!:boolean;
   ngOnInit(): void {
+    if(sessionStorage.getItem('logged') == 'in'){
+      this.logged = true;
+    }
+    else{
+      this.logged = false;
+    }
   }
 
+  signout(){
+    sessionStorage.removeItem('logged');
+    this.logged = false;
+  }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthGuard } from './services/auth.guard';
+import { FormsModule } from '@angular/forms';
+import { FoodCardComponent } from './food-card/food-card.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +36,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     IndianComponentComponent,
     MaxicanComponentComponent,
     HomeComponentComponent,
-    LoginComponent
+    LoginComponent,
+    FoodCardComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     MatToolbarModule,
     MatInputModule,
     MatCardModule,
@@ -50,13 +59,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     RouterModule.forRoot([
       {path:'', component: HomeComponentComponent},
-      {path:'indian', component: IndianComponentComponent},
-      {path:'maxican', component: MaxicanComponentComponent},
-      {path:'login',component:LoginComponent}
+      {path:'indian', component: IndianComponentComponent,canActivate:[AuthGuard]},
+      {path:'maxican', component: MaxicanComponentComponent,canActivate:[AuthGuard]},
+      {path:'login',component:LoginComponent},
+      {path: 'signup', component:SignupComponent}
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

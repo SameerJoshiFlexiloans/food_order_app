@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { foodCard } from '../food.service';
+import { MenuService } from '../services/menu.service';
 
 @Component({
   selector: 'app-maxican-component',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MaxicanComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private menuService:MenuService) { }
 
+  httpValue!:any;
+  foods!:Array<foodCard>;
   ngOnInit(): void {
+    this.menuService.getDataValues('maxican').subscribe(value=>{
+      this.httpValue = value;
+      this.foods = this.httpValue.data;
+    });
   }
-
 }

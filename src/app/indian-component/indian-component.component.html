@@ -1,42 +1,6 @@
-<div>
-    <div class="row mb-2">
-        <div class="col-md-6">
-          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary">Chicken</strong>
-              <h3 class="mb-0">Biryani</h3>
-              <p class="mb-auto">Biryani is a mixed rice dish originating among the people of the Indian subcontinent.</p>
-              <div class="row">
-                <div class="col-md-2"><button class="btn btn-danger" (click)="quantity('-',0)">-</button></div>
-                <div class="col-md-2">{{value0}}</div>
-                <div class="col-md-2"><button class="btn btn-success" (click)="quantity('+',0)">+</button></div>
-                <div class="col-md-4">Total Amount: {{total}}</div>
-            </div>
-            </div>
-            <div class="col-auto d-none d-lg-block">
-              <img class="bd-placeholder-img" width="200" height="250" src="../../assets/Best-Mutton-Biryani-Recipe.jpeg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-    
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-success">Fish</strong>
-              <h3 class="mb-0">Fish Curry</h3>
-              <p class="mb-auto">Malabar matthi curry, also known as fish curry, is an Indian also Goan dish.</p>
-              <div class="row">
-                  <div class="col-md-2"><button class="btn btn-danger" (click)="quantity('-',1)">-</button></div>
-                  <div class="col-md-2">{{value1}}</div>
-                  <div class="col-md-2"><button class="btn btn-success" (click)="quantity('+',1)">+</button></div>
-                  <div class="col-md-4">Total Amount: {{total}}</div>
-              </div>
-              
-            </div>
-            <div class="col-auto d-none d-lg-block">
-              <img class="bd-placeholder-img" width="200" height="250" src="../../assets/Goan-Fish-Curry-2-3.jpeg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            </div>
-          </div>
-        </div>
-      </div>
+<app-app-header></app-app-header>
+<div class="row mb-2">
+  <div class="col-md-6" *ngFor="let food of foods">
+    <app-food-card [food]="food"></app-food-card>
+  </div>
 </div>

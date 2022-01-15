@@ -9,7 +9,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    if(sessionStorage.getItem('logged') == 'in'){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
